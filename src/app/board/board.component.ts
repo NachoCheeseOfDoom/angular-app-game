@@ -6,25 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-squares: any[] | undefined;
-xIsNext: boolean | undefined;
-winner: string | undefined;
+  squares: any[] | undefined;
+  xIsNext: boolean | undefined;
+  winner: string | undefined | null;
   constructor() { }
 
   ngOnInit(): void {
     this.newGame();
   }
 
-  newGame(){
+  newGame() {
     this.squares = Array(9).fill(null);
     this.winner = "";
     this.xIsNext = true;
   }
-  get player(){
+  get player() {
     return this.xIsNext ? 'X' : 'O';
   }
 
-  makeMove(idx: number){
+  makeMove(idx: number) {
     if (this.squares![idx]) {
       this.squares?.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
@@ -32,7 +32,7 @@ winner: string | undefined;
     this.winner = this.calculateWinner();
   }
 
-  calculateWinner(){
+  calculateWinner() {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
